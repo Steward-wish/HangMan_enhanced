@@ -12,7 +12,16 @@ public class GameLogic {
 
     public GameLogic(String word) {
         this.hiddenWord = word;
-        this.displayWord = "_".repeat(word.length()); // start with underscores
+        int space_location = word.indexOf(" ");
+        displayWord = " ";
+        this.displayWord = "_".repeat(word.length());// start with underscores
+
+        for (int i =0; i <= hiddenWord.length()-1; i++) {
+            if( word.charAt(i) ==' '){
+                this.displayWord = displayWord.substring(0, i)+ " " + displayWord.substring(i+1);
+            }
+        }
+
         this.guessedLetters = new ArrayList<>();
         this.incorrectGuesses = 0;
     }
