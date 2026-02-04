@@ -3,74 +3,68 @@ package HangMan;
 //import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
 public class HangmanAdditionalYichen {
-    public static void main(String[] args) {
+     static void main() {
 
         Scanner sc = new Scanner(System.in);
         GameUI ui = new GameUI();
+        WordLoader loader = new WordLoader();
+        int players;
 
-        boolean playAgain = true;
+        boolean playAgain;
         ui.displayWelcome();
 
-        while (playAgain) {
-
-            // Select the number of players
-//            try {
-                System.out.print("Please enter number of players (minimum 2): ");
-                int players = sc.nextInt();
-                sc.nextLine();
-                System.out.println();
-//            }
-//            catch (InputMismatchException e) {
-//                throw new IllegalArgumentException("Invalid Input!");
-//            }
-
-            while (players < 2) {
-                System.out.print("Invalid. Enter at least 2 players: ");
-                players = sc.nextInt();
-                sc.nextLine();
-                System.out.println();
+        do {
+            // input players
+            players = ui.getPlayers();
+            //The first player choose a word, phrase, or sentence.
+            String guessItem = loader.answerWords();
+            GameLogic[] game = new GameLogic[players];
+            for (int i = 0; i < players; i++) {
+                game[i] = new GameLogic(guessItem);
             }
 
-            //The first player choose a word, phrase, or sentence.
-            System.out.print("Player 1, enter your word / phrase / sentence: ");
-            String guessItem = sc.nextLine().toUpperCase();
-            //guessItem = guessItem.replaceAll("\\s", "");
 
-
-            //
-            System.out.println("\n".repeat(30));
-
-            GameLogic game = new GameLogic(guessItem);
-
-            int currentPlayer = 2;
 
             // Main game loop
-            while (!game.isGameOver()) {
+            while (!game[0].isGameOver()) {
 
-                ui.displayGameState(game);
+                for (int i = 1; i < players; i++) {
+                    if (game[i].getIncorrectGuesses()>=6) {
+                        continue;
+                    }
+                    ui.displayAdditionalGameState(game[0], game[i]); // show current state
+                    //ui.displayPlayersTurn(game[0]);  // show current player's turn
+                    System.out.printf("Player %d's turn\n", i+1);
+                    System.out.printf("player %d's incorrect numbers: %d%n", i+1, game[i].getIncorrectGuesses());
+                    char guess = ui.getGuessFromUser();// get user input
+                    if (game[i].guessLetter((Character.toUpperCase(guess)))) {
+                        System.out.printf("Letter %s is correct!\n", guess);
+                    }else {
+                        System.out.printf("Letter %s is wrong!\n", guess);
+                    }
+                    game[0].guessLetter((Character.toUpperCase(guess)));
+                    if (game[0].isWon()) {
+                        // Display final result
+                        ui.displayAdditionalResult(game[0], i+1);
+                        break;
+                    } else if (game[i].isLost()) {
+                        System.out.printf("player %d, sorry, you LOST!", i+1);
 
-                System.out.println("Player " + currentPlayer + "'s turn");
-                char guess = ui.getGuessFromUser();
+                    }
 
-                game.guessLetter((Character.toUpperCase(guess)));
 
-                currentPlayer++;
-                if (currentPlayer > players) {
-                    currentPlayer = 2;
+                }
+                // Display final result
+                if (game[0].isGameOver()) {
+                    ui.displayAdditionalResult(game[0], 1);
                 }
             }
 
-            // Display final result
-            ui.displayResult(game);
-
-
             // Replay option
-            System.out.print("Do you want to play again? (Y/N): ");
-            char choice = sc.nextLine().toUpperCase().charAt(0);
-
-            playAgain = (choice == 'Y');
-        }
+            playAgain = game[0].playAgain();
+        }while (playAgain);
         System.out.println();
         System.out.println("Thank you for your participation!");
         sc.close();

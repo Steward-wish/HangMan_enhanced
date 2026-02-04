@@ -2,8 +2,12 @@ package HangMan;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+
 public class GameUI {
     private final Scanner scanner = new Scanner(System.in);
+
+
 
     public void displayWelcome() {
         System.out.println("===== Welcome to Hangman game! =====");
@@ -69,4 +73,70 @@ public class GameUI {
         };
         System.out.print(hangmanStages[stage]);
     }
+
+
+    // Additional UiLogic
+
+    public void displayAdditionalGameState(GameLogic game1, GameLogic game2) {
+        System.out.println();
+        System.out.println("------------------------------------");
+        game1.setIncorrectGuesses(game2.getIncorrectGuesses());
+        drawHangman(game1.getIncorrectGuesses());
+        System.out.println("Word: " + game1.getDisplayWord());
+        System.out.println("Used Letters: " + formatGuessedLetters(game1.getGuessedLetters()));
+        System.out.println("------------------------------------");
+    }
+
+    public int getPlayers() {
+        // Select the number of players
+        while(true) {
+            try {
+                System.out.print("\nPlease enter number of players (minimum 2): ");
+                //Additional variables
+                int players = scanner.nextInt();
+                System.out.println();
+
+                while (players < 2) {
+                    System.out.print("Invalid. Enter at least 2 players: ");
+                    players = scanner.nextInt();
+                    System.out.println();
+                }
+                return players;
+            } catch (Exception e) {
+                System.out.println("Invalid Input!");
+            } finally {
+                scanner.nextLine(); // clear buffer
+            }
+        }
+    }
+
+    public void displayAdditionalResult(GameLogic game, int i) {
+        System.out.println();
+        System.out.println("===== Game Over! =====");
+        if (game.isWon()) {
+
+            System.out.println("Congratulations, player"+i+1+", you have WON!");
+            System.out.println();
+            System.out.println("The word is: " + game.getHiddenWord());
+        } else {
+            System.out.print("Sorry, you LOST!");
+            System.out.println();
+            System.out.println("The word was: " + game.getHiddenWord());
+            drawHangman(game.getIncorrectGuesses());
+        }
+    }
+
+
+//    public void displayPlayersTurn(GameLogic game) {
+//
+//        System.out.println("Player " + currentPlayer++ + "'s turn");
+//        if (currentPlayer > players) {
+//            currentPlayer = 2;
+//        }
+//        System.out.println("Player " + currentPlayer++ + "'s Incorrect Guesses: " + game.getIncorrectGuesses() + "/" + game.getMaxIncorrectGuesses());
+//    }
+
+
+
+
 }

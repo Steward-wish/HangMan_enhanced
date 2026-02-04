@@ -1,6 +1,7 @@
 package HangMan;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 //Handles the rules and state of the Hangman game.
 public class GameLogic {
@@ -10,9 +11,13 @@ public class GameLogic {
     private final ArrayList<Character> guessedLetters; // track guesses
     private int incorrectGuesses;             // count wrong guesses
 
+
+    Scanner sc = new Scanner(System.in);
+
+
     public GameLogic(String word) {
         this.hiddenWord = word;
-        int space_location = word.indexOf(" ");
+
         displayWord = " ";
         this.displayWord = "_".repeat(word.length());// start with underscores
 
@@ -86,4 +91,50 @@ public class GameLogic {
     public boolean isLost() {
         return incorrectGuesses >= MAX_INCORRECT_GUESSES;
     }
+
+
+    //Additional logic
+
+    public boolean playAgain() {
+        // Replay option
+        System.out.print("Do you want to play again? (Y/N): ");
+        String choice;
+        while (true) {
+            try {
+                choice = sc.next().toUpperCase();
+                if (choice.length() != 1 || !Character.isLetter(choice.charAt(0))) {
+                    throw new IllegalArgumentException();
+                } else if (!choice.equals("Y") && !choice.equals("N")) {
+                    throw new IllegalArgumentException();
+                }
+                break;
+            }catch (IllegalArgumentException | StringIndexOutOfBoundsException e) {
+                System.out.print("Invalid input. Play again? (Y/N): ");
+            } finally {
+                sc.nextLine();// clear buffer
+            }
+
+        }
+        return choice.equals("Y");
+    }
+
+
+    public void setIncorrectGuesses(int incorrectGuesses) {
+        this.incorrectGuesses = incorrectGuesses;
+
+    }
+
+//    public boolean isPlayerLost(ArrayList<Integer> lostPlayers, int i) {
+//        for (int j = 0; j < lostPlayers.size(); j++) {
+//            if (i == lostPlayers.get(j)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+
+
+
+
+
 }
