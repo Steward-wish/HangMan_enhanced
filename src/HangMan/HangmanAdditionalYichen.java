@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 
 public class HangmanAdditionalYichen {
-     static void main() {
+     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
         GameUI ui = new GameUI();
