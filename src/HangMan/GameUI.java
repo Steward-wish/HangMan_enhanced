@@ -116,7 +116,7 @@ public class GameUI {
             System.out.printf("Congratulations, player %d, you have WON!\n", i+1);
             System.out.println();
         } else {
-            System.out.print("Sorry, you LOST!");
+            System.out.print("Sorry, all you LOST!");
             System.out.println();
             System.out.println("The word was: " + game.getHiddenWord());
             drawHangman(game.getIncorrectGuesses());

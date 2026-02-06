@@ -51,11 +51,17 @@ public class HangmanAdditionalMulti {
                          ui.displayAdditionalResult(game[0], i+1);
                          break;
                      } else if (game[i].isLost()) {
-                         System.out.printf("player %d, sorry, you LOST!", i+1);
+                         System.out.printf("player %d, sorry, you LOST!\n", i+1);
+
                      }
                  }
+
              }
 
+         }
+         // result of the game if all players lost
+         if (game[0].isLost()) {
+             ui.displayResult(game[0]);
          }
 
 
