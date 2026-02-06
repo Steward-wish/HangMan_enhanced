@@ -4,9 +4,12 @@ package HangMan;
 import java.util.Scanner;
 
 public class HangmanAdditionalMain {
-    public static void main(String[] args) {
 
+    Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
         GameUI ui = new GameUI();
         boolean playAgain;
         int choise;
@@ -40,7 +43,8 @@ public class HangmanAdditionalMain {
             } else {
                 System.out.println("thank you");
             }
-        }while (ui.playAgain());
+            playAgain = ui.playAgain();
+        }while (playAgain);
 
 
     }

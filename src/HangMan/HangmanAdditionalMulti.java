@@ -26,11 +26,15 @@ public class HangmanAdditionalMulti {
          while (!game[0].isGameOver()) {
 
              for (int i = 1; i < players; i++) {
+
+                 // skip lost player
                  if (game[i].getIncorrectGuesses()>=6) {
                      continue;
                  }
+
                  ui.displayAdditionalGameState(game[0], game[i]); // show current state
                  //ui.displayPlayersTurn(game[0]);  // show current player's turn
+
                  System.out.printf("Player %d's turn\n", i+1);
                  System.out.printf("player %d's incorrect numbers: %d%n", i+1, game[i].getIncorrectGuesses());
                  char guess = ui.getGuessFromUser();// get user input
@@ -41,22 +45,19 @@ public class HangmanAdditionalMulti {
                      System.out.printf("Letter %s is wrong!\n", guess);
                  }
                  game[0].guessLetter((Character.toUpperCase(guess)));
-
-                 if (game[0].isWon()) {
-                     // Display final result
-                     ui.displayAdditionalResult(game[0], i+1);
-                     break;
-                 } else if (game[i].isLost()) {
-                     System.out.printf("player %d, sorry, you LOST!", i+1);
-
+                 // Display final result
+                 if (game[0].isGameOver()) {
+                     if (game[0].isWon()) {
+                         ui.displayAdditionalResult(game[0], i+1);
+                         break;
+                     } else if (game[i].isLost()) {
+                         System.out.printf("player %d, sorry, you LOST!", i+1);
+                     }
                  }
 
 
              }
-             // Display final result
-             if (game[0].isGameOver()) {
-                 ui.displayAdditionalResult(game[0], 1);
-             }
+
          }
 
 

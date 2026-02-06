@@ -1,7 +1,6 @@
 package HangMan;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 //Handles the rules and state of the Hangman game.
 public class GameLogic {
@@ -11,8 +10,6 @@ public class GameLogic {
     private final ArrayList<Character> guessedLetters; // track guesses
     private int incorrectGuesses;             // count wrong guesses
 
-
-    Scanner sc = new Scanner(System.in);
 
 
     public GameLogic(String word) {
