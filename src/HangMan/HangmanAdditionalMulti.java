@@ -68,6 +68,6 @@ public class HangmanAdditionalMulti {
 
         System.out.println();
         System.out.println("Thank you for your participation!");
-
+//steward
     }
 }
