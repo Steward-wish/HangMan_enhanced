@@ -20,8 +20,8 @@ public class WordLoader {
         //The first player choose a word, phrase, or sentence.
         System.out.print("Player 1, enter your word / phrase / sentence: ");
         String guessItem = sc.nextLine().toUpperCase();
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+        System.out.print("\n".repeat(30));
+
 
 
         //guessItem = guessItem.replaceAll("\\s", "");
@@ -29,8 +29,10 @@ public class WordLoader {
             if (!Character.isLetter(guessItem.charAt(0))) {
                 System.out.print("Invalid input. Player 1, enter your word / phrase / sentence: ");
                 guessItem = sc.nextLine().toUpperCase();
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
+
+                System.out.print("\n".repeat(30));
+                //System.out.print("\033[H\033[2J");
+                //System.out.flush();
 
             }
         }

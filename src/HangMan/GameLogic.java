@@ -95,28 +95,7 @@ public class GameLogic {
 
     //Additional logic
 
-    public boolean playAgain() {
-        // Replay option
-        System.out.print("Do you want to play again? (Y/N): ");
-        String choice;
-        while (true) {
-            try {
-                choice = sc.next().toUpperCase();
-                if (choice.length() != 1 || !Character.isLetter(choice.charAt(0))) {
-                    throw new IllegalArgumentException();
-                } else if (!choice.equals("Y") && !choice.equals("N")) {
-                    throw new IllegalArgumentException();
-                }
-                break;
-            }catch (IllegalArgumentException | StringIndexOutOfBoundsException e) {
-                System.out.print("Invalid input. Play again? (Y/N): ");
-            } finally {
-                sc.nextLine();// clear buffer
-            }
 
-        }
-        return choice.equals("Y");
-    }
 
 
     public void setIncorrectGuesses(int incorrectGuesses) {

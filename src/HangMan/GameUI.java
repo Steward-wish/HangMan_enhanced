@@ -42,11 +42,9 @@ public class GameUI {
 
             System.out.println("Congratulations, you have WON!");
             System.out.println();
-            System.out.println("The word is: " + game.getHiddenWord());
         } else {
-            System.out.print("Sorry, you LOST!");
-            System.out.println();
-            System.out.println("  The word was: " + game.getHiddenWord());
+            System.out.print("Sorry, you LOST! ");
+            System.out.println("The word was: " + game.getHiddenWord());
             drawHangman(game.getIncorrectGuesses());
         }
     }
@@ -115,15 +113,37 @@ public class GameUI {
         System.out.println("===== Game Over! =====");
         if (game.isWon()) {
 
-            System.out.println("Congratulations, player"+i+1+", you have WON!");
+            System.out.printf("Congratulations, player %d, you have WON!\n", i+1);
             System.out.println();
-            System.out.println("The word is: " + game.getHiddenWord());
         } else {
-            System.out.print("Sorry, you LOST!");
+            System.out.print("Sorry, you LOST! ");
             System.out.println();
             System.out.println("The word was: " + game.getHiddenWord());
             drawHangman(game.getIncorrectGuesses());
         }
+    }
+
+    public boolean playAgain() {
+        // Replay option
+        System.out.print("\nDo you want to play again? (Y/N): ");
+        String choice;
+        while (true) {
+            try {
+                choice = scanner.next().toUpperCase();
+                if (choice.length() != 1 || !Character.isLetter(choice.charAt(0))) {
+                    throw new IllegalArgumentException();
+                } else if (!choice.equals("Y") && !choice.equals("N")) {
+                    throw new IllegalArgumentException();
+                }
+                break;
+            }catch (IllegalArgumentException | StringIndexOutOfBoundsException e) {
+                System.out.print("Invalid input. Play again? (Y/N): ");
+            } finally {
+                scanner.nextLine();// clear buffer
+            }
+
+        }
+        return choice.equals("Y");
     }
 
 
