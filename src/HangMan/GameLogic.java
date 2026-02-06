@@ -97,7 +97,6 @@ public class GameLogic {
 
     public void setIncorrectGuesses(int incorrectGuesses) {
         this.incorrectGuesses = incorrectGuesses;
-
     }
 
 //    public boolean isPlayerLost(ArrayList<Integer> lostPlayers, int i) {

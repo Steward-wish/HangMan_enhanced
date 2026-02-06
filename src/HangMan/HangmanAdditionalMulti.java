@@ -54,8 +54,6 @@ public class HangmanAdditionalMulti {
                          System.out.printf("player %d, sorry, you LOST!", i+1);
                      }
                  }
-
-
              }
 
          }
@@ -64,6 +62,6 @@ public class HangmanAdditionalMulti {
 
         System.out.println();
         System.out.println("Thank you for your participation!");
-        sc.close();
+
     }
 }

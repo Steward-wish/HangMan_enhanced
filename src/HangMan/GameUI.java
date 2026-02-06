@@ -113,10 +113,10 @@ public class GameUI {
         System.out.println("===== Game Over! =====");
         if (game.isWon()) {
 
-            System.out.printf("Congratulations, player %d, you have WON!\n", i);
+            System.out.printf("Congratulations, player %d, you have WON!\n", i+1);
             System.out.println();
         } else {
-            System.out.print("Sorry, you LOST! ");
+            System.out.print("Sorry, you LOST!");
             System.out.println();
             System.out.println("The word was: " + game.getHiddenWord());
             drawHangman(game.getIncorrectGuesses());
@@ -125,25 +125,25 @@ public class GameUI {
 
     public boolean playAgain() {
         // Replay option
-        System.out.print("\nDo you want to play again? (Y/N): ");
-        String choice = scanner.nextLine();
-        while (!choice.equals("y")) {
+        System.out.print("Do you want to play again? (Y/N): ");
+        String choice;
+        while (true) {
             try {
                 choice = scanner.next().toUpperCase();
-
                 if (choice.length() != 1 || !Character.isLetter(choice.charAt(0))) {
                     throw new IllegalArgumentException();
                 } else if (!choice.equals("Y") && !choice.equals("N")) {
                     throw new IllegalArgumentException();
                 }
-            }catch (Exception e) {
-                System.out.print("Invalid input. Play again? (Y/N): ");}
-//            } finally {
-//                scanner.nextLine();// clear buffer
-//            }
+                break;
+            }catch (IllegalArgumentException | StringIndexOutOfBoundsException e) {
+                System.out.print("Invalid input. Play again? (Y/N): ");
+            } finally {
+                scanner.nextLine();// clear buffer
+            }
 
         }
-        return true;
+        return choice.equals("Y");
     }
 
 
