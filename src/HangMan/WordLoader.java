@@ -1,12 +1,8 @@
 package HangMan;
-import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -49,16 +45,16 @@ public class WordLoader {
 
     public String getRemoteRandomWord() {
         try {
+
             // 1. creat client
             HttpClient client = HttpClient.newHttpClient();
 
             // 2. creat request
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("https://random-word-api.herokuapp.com/word?number="+random.nextInt(1,3))).build();
+            HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://random-word-api.herokuapp.com/word?number="+random.nextInt(1,3))).build();
+            System.out.println("\nRandom words are being obtained from the internet......");
 
             // 3. send request, get response
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            System.err.println("Random words are being obtained from the internet......");
 
             // 4. process response : ["sulfuric","prediction","pacifist"]
             String result = response.body();
