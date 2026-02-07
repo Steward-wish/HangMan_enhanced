@@ -15,7 +15,8 @@ public class HangmanBasic {
             ui.displayGameState(game); // show current state
             char guess = ui.getGuessFromUser(); // get user input
             game.guessLetter(Character.toUpperCase(guess));
+
+            ui.displayResult(game); // show final result
         }
-        ui.displayResult(game); // show final result
     }
 }
