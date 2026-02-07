@@ -10,7 +10,7 @@ public class HangmanAdditionalMulti {
         Scanner sc = new Scanner(System.in);
         GameUI ui = new GameUI();
         WordLoader loader = new WordLoader();
-        int players, choise = 0;
+        int players, choise;
          String guessItem;
 
          while (true) {
@@ -55,11 +55,15 @@ public class HangmanAdditionalMulti {
          // Main multiplayer loop
          while (!game[0].isGameOver()) {
 
-             for (int i = 1; i < players; i++) {
+             for (int i = 0; i < players; i++) {
 
                  // skip lost player
                  if (game[i].getIncorrectGuesses()>=6) {
                      continue;
+                 }
+                 // skip first player when player1 input answerWords
+                 if (choise == 1) {
+                     if (i == 0) continue;
                  }
 
                  ui.displayAdditionalGameState(game[0], game[i]); // show current state
@@ -80,7 +84,7 @@ public class HangmanAdditionalMulti {
                      if (game[0].isWon()) {
                          ui.displayAdditionalResult(game[0], i);
                          break;
-                     } else if (game[0].isLost()) {
+                     } else if (game[i].getIncorrectGuesses()>=6) {
                          System.out.printf("player %d, sorry, you LOST!\n", i+1);
 
                      }
