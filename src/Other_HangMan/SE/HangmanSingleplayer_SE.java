@@ -1,8 +1,7 @@
-package HangMan.SE;
+package Other_HangMan.SE;
 
 import HangMan.GameLogic;
 import HangMan.GameUI;
-import HangMan.SE.WordLoader_SE;
 
 public class HangmanSingleplayer_SE {
     public void soloPlayerMode() {

@@ -10,19 +10,49 @@ public class HangmanAdditionalMulti {
         Scanner sc = new Scanner(System.in);
         GameUI ui = new GameUI();
         WordLoader loader = new WordLoader();
-        int players;
+        int players, choise = 0;
+         String guessItem;
+
+         while (true) {
+             try {
+                 System.out.println("\nChoose enter mode\n1. Self-enter\n2. Random word");
+                 System.out.print("Enter: ");
+                 choise = sc.nextInt();
+                 if (choise < 0 || choise > 2) {
+                     throw new IllegalArgumentException();
+                 }
+                 break;
+             } catch (Exception e) {
+                 System.out.println("Invalid input, enter a number between 0-2.");
+             } finally {
+                 sc.nextLine();
+             }
+         }
+
+
+         if (choise == 1) {
+             //The first player choose a word, phrase, or sentence.
+             guessItem = loader.answerWords();
+         } else {
+
+             guessItem = loader.getRemoteRandomWord();
+         }
+
+
+
+
 
 
         // input players
          players = ui.getPlayers();
-         //The first player choose a word, phrase, or sentence.
-         String guessItem = loader.answerWords();
          GameLogic[] game = new GameLogic[players];
          for (int i = 0; i < players; i++) {
              game[i] = new GameLogic(guessItem);
          }
 
-         // Main game loop
+
+
+         // Main multiplayer loop
          while (!game[0].isGameOver()) {
 
              for (int i = 1; i < players; i++) {
@@ -48,9 +78,9 @@ public class HangmanAdditionalMulti {
                  // Display final result
                  if (game[0].isGameOver()) {
                      if (game[0].isWon()) {
-                         ui.displayAdditionalResult(game[0], i+1);
+                         ui.displayAdditionalResult(game[0], i);
                          break;
-                     } else if (game[i].isLost()) {
+                     } else if (game[0].isLost()) {
                          System.out.printf("player %d, sorry, you LOST!\n", i+1);
 
                      }
@@ -68,7 +98,5 @@ public class HangmanAdditionalMulti {
 
         System.out.println();
         System.out.println("Thank you for your participation!");
-        int ch = 1;
-//steward
     }
 }

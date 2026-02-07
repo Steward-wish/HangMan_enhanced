@@ -129,10 +129,10 @@ public class GameUI {
         String choice;
         while (true) {
             try {
-                choice = scanner.next();
+                choice = scanner.next().toUpperCase();
                 if (choice.length() != 1 || !Character.isLetter(choice.charAt(0))) {
                     throw new IllegalArgumentException();
-                } else if (!choice.equalsIgnoreCase("Y") && !choice.equalsIgnoreCase("N")) {
+                } else if (!choice.equals("Y") && !choice.equals("N")) {
                     throw new IllegalArgumentException();
                 }
                 break;

@@ -1,4 +1,4 @@
-package HangMan.SE;
+package Other_HangMan.SE;
 import HangMan.GameLogic;
 
 import java.util.ArrayList;

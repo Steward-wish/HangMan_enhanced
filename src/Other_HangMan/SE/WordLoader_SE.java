@@ -1,8 +1,11 @@
-package HangMan.SE;
+package Other_HangMan.SE;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class WordLoader_SE {
@@ -44,7 +47,28 @@ public class WordLoader_SE {
 
         } catch (Exception e) {
             System.out.println("Could not fetch from API, using fallback list.");
-            words = Arrays.asList("JAVA", "HANGMAN", "DEFAULT");
+            words = getRandomWord();
+        }
+    }
+
+    public List<String> getRandomWord() {
+        try {
+            // 1. 将所有行读取到 List 中
+            List<String> words = Files.readAllLines(Paths.get("words.txt"));
+
+            // 2. 检查文件是否为空
+            if (words.isEmpty()) {
+                System.err.println("Empty!");
+                return null;
+            }
+
+            //
+            Random rand = new Random();
+            return words;
+
+        } catch (IOException e) {
+            System.err.println("Error!");
+            return null;
         }
     }
 
