@@ -34,7 +34,7 @@ public class HangmanAdditional_SE {
                 HangmanSingleplayer_SE solo = new HangmanSingleplayer_SE();
                 solo.soloPlayerMode();
             } else if (choise == 2) {
-                HangmanMultiplayer_SE mutiPlayer = new HangmanMultiplayer_SE();
+                HangmanMultiplayer_CE mutiPlayer = new HangmanMultiplayer_CE();
                 mutiPlayer.multiPlayerMode();
 
 
