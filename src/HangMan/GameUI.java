@@ -89,7 +89,7 @@ public class GameUI {
         // Select the number of players
         while(true) {
             try {
-                System.out.print("\nPlease enter number of players (minimum 2): ");
+                System.out.print("\nPlease enter number of players (minimum 2, suggest less than 4 players): ");
                 //Additional variables
                 int players = scanner.nextInt();
                 System.out.println();
