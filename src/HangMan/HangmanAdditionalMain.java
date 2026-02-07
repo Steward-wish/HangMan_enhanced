@@ -36,8 +36,8 @@ public class HangmanAdditionalMain {
                 HangmanBasic solo = new HangmanBasic();
                 solo.soloPlayerMode();
             } else if (choise == 2) {
-                HangmanAdditionalMulti mutiPlayer = new HangmanAdditionalMulti();
-                mutiPlayer.multiPlayerMode();
+                HangmanAdditionalMulti multiPlayer = new HangmanAdditionalMulti();
+                multiPlayer.multiPlayerMode();
 
             } else {
                 System.out.println("thank you");
