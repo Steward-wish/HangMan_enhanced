@@ -19,12 +19,12 @@ public class HangmanAdditionalMulti {
                  System.out.println("\nChoose enter mode\n1. Self-enter\n2. Random word");
                  System.out.print("Enter: ");
                  choise = sc.nextInt();
-                 if (choise < 0 || choise > 2) {
+                 if (choise < 1 || choise > 2) {
                      throw new IllegalArgumentException();
                  }
                  break;
              } catch (Exception e) {
-                 System.out.println("Invalid input, enter a number between 0-2.");
+                 System.out.println("Invalid input, enter a number between 1-2.");
              } finally {
                  sc.nextLine();
              }
@@ -38,9 +38,6 @@ public class HangmanAdditionalMulti {
              // words are generated on the internet
              guessItem = loader.getRemoteRandomWord();
          }
-
-
-
 
 
 
