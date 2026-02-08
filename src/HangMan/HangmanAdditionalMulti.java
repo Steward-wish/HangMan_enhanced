@@ -13,6 +13,7 @@ public class HangmanAdditionalMulti {
         int players, choise;
          String guessItem;
 
+         // check the choice whether is valid
          while (true) {
              try {
                  System.out.println("\nChoose enter mode\n1. Self-enter\n2. Random word");
@@ -34,7 +35,7 @@ public class HangmanAdditionalMulti {
              //The first player choose a word, phrase, or sentence.
              guessItem = loader.answerWords();
          } else {
-
+             // words are generated on the internet
              guessItem = loader.getRemoteRandomWord();
          }
 
@@ -46,47 +47,49 @@ public class HangmanAdditionalMulti {
         // input players
          players = ui.getPlayers();
          GameLogic[] game = new GameLogic[players];
-         for (int i = 0; i < players; i++) {
+         for (int i = 1; i <= players; i++) {
              game[i] = new GameLogic(guessItem);
          }
 
 
 
          // Main multiplayer loop
-         while (!game[0].isGameOver()) {
+         while (!game[1].isGameOver()) { // use first game object control game statue
 
-             for (int i = 0; i < players; i++) {
+             for (int i = 1; i <= players; i++) {
 
-                 // skip lost player
+                 // skip lost players
                  if (game[i].getIncorrectGuesses()>=6) {
                      continue;
                  }
-                 // skip first player when player1 input answerWords
+                 // skip first player when first player input answerWords
                  if (choise == 1) {
-                     if (i == 0) continue;
+                     if (i == 1) continue;
                  }
 
-                 ui.displayAdditionalGameState(game[0], game[i]); // show current state
-                 //ui.displayPlayersTurn(game[0]);  // show current player's turn
+                 ui.displayAdditionalGameState(game[1], game[i]); // show current game's state
+                 //ui.displayPlayersTurn(game[0]);
 
-                 System.out.printf("Player %d's turn\n", i+1);
-                 System.out.printf("player %d's incorrect numbers: %d%n", i+1, game[i].getIncorrectGuesses());
+                 System.out.printf("Player %d's turn\n", i); // show current player's turn
+                 System.out.printf("player %d's incorrect numbers: %d%n", i, game[i].getIncorrectGuesses());// show current player's incorrectGuess
                  char guess = ui.getGuessFromUser();// get user input
 
+                 // check and show the current letter whether is correct
                  if (game[i].guessLetter((Character.toUpperCase(guess)))) {
                      System.out.printf("Letter %s is correct!\n", guess);
                  }else {
                      System.out.printf("Letter %s is wrong!\n", guess);
                  }
-                 game[0].guessLetter((Character.toUpperCase(guess)));
-                 // Display final result
-                 if (game[0].isGameOver()) {
-                     if (game[0].isWon()) {
-                         ui.displayAdditionalResult(game[0], i);
-                         break;
-                     } else if (game[i].getIncorrectGuesses()>=6) {
-                         System.out.printf("player %d, sorry, you LOST!\n", i+1);
 
+                 game[1].guessLetter((Character.toUpperCase(guess))); // give this object the current player's guessResult
+
+                 // Display final result
+                 if (game[1].isGameOver()) {
+                     if (game[1].isWon()) { // if someone win, exit
+                         ui.displayAdditionalResult(game[1], i);
+                         break;
+                     } else if (game[i].getIncorrectGuesses()>=6) { // if someone lost, others continue
+                         System.out.printf("player %d, sorry, you LOST!\n", i);
                      }
                  }
 
@@ -94,8 +97,8 @@ public class HangmanAdditionalMulti {
 
          }
          // result of the game if all players lost
-         if (game[0].isLost()) {
-             ui.displayResult(game[0]);
+         if (game[1].isLost()) {
+             ui.displayResult(game[1]);
          }
 
 

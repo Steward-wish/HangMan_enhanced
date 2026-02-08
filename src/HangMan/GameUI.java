@@ -113,7 +113,7 @@ public class GameUI {
         System.out.println("===== Game Over! =====");
         if (game.isWon()) {
 
-            System.out.printf("Congratulations, player %d, you have WON!\n", i+1);
+            System.out.printf("Congratulations, player %d, you have WON!\n", i);
             System.out.println();
         } else {
             System.out.print("Sorry, all you LOST!");
