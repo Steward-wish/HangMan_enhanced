@@ -41,9 +41,6 @@ public class HangmanAdditionalMulti {
 
 
 
-
-
-
         // input players
          players = ui.getPlayers();
          GameLogic[] game = new GameLogic[players];
