@@ -47,19 +47,19 @@ public class HangmanAdditionalMulti {
         // input players
          players = ui.getPlayers();
          GameLogic[] game = new GameLogic[players];
-         for (int i = 1; i <= players; i++) {
+         for (int i = 0; i < players; i++) {
              game[i] = new GameLogic(guessItem);
          }
 
 
 
          // Main multiplayer loop
-         while (!game[1].isGameOver()) { // use first game object control game statue
+         while (!game[0].isGameOver()) { // use first game object control game statue
 
              for (int i = 1; i <= players; i++) {
 
                  // skip lost players
-                 if (game[i].getIncorrectGuesses()>=6) {
+                 if (game[i-1].getIncorrectGuesses()>=6) {
                      continue;
                  }
                  // skip first player when first player input answerWords
@@ -67,28 +67,28 @@ public class HangmanAdditionalMulti {
                      if (i == 1) continue;
                  }
 
-                 ui.displayAdditionalGameState(game[1], game[i]); // show current game's state
+                 ui.displayAdditionalGameState(game[0], game[i-1]); // show current game's state
                  //ui.displayPlayersTurn(game[0]);
 
                  System.out.printf("Player %d's turn\n", i); // show current player's turn
-                 System.out.printf("player %d's incorrect numbers: %d%n", i, game[i].getIncorrectGuesses());// show current player's incorrectGuess
+                 System.out.printf("player %d's incorrect numbers: %d%n", i, game[i-1].getIncorrectGuesses());// show current player's incorrectGuess
                  char guess = ui.getGuessFromUser();// get user input
 
                  // check and show the current letter whether is correct
-                 if (game[i].guessLetter((Character.toUpperCase(guess)))) {
+                 if (game[i-1].guessLetter((Character.toUpperCase(guess)))) {
                      System.out.printf("Letter %s is correct!\n", guess);
                  }else {
                      System.out.printf("Letter %s is wrong!\n", guess);
                  }
 
-                 game[1].guessLetter((Character.toUpperCase(guess))); // give this object the current player's guessResult
+                 game[0].guessLetter((Character.toUpperCase(guess))); // give this object the current player's guessResult
 
                  // Display final result
-                 if (game[1].isGameOver()) {
-                     if (game[1].isWon()) { // if someone win, exit
-                         ui.displayAdditionalResult(game[1], i);
+                 if (game[0].isGameOver()) {
+                     if (game[0].isWon()) { // if someone win, exit
+                         ui.displayAdditionalResult(game[0], i);
                          break;
-                     } else if (game[i].getIncorrectGuesses()>=6) { // if someone lost, others continue
+                     } else if (game[i-1].getIncorrectGuesses()>=6) { // if someone lost, others continue
                          System.out.printf("player %d, sorry, you LOST!\n", i);
                      }
                  }
