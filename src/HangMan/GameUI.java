@@ -75,6 +75,7 @@ public class GameUI {
 
     // Additional UiLogic
 
+    // show the enhanceGame's statue
     public void displayAdditionalGameState(GameLogic game1, GameLogic game2) {
         System.out.println();
         System.out.println("------------------------------------");
@@ -85,8 +86,10 @@ public class GameUI {
         System.out.println("------------------------------------");
     }
 
+    // set the number of players
     public int getPlayers() {
-        // Select the number of players
+
+        // check the input whether is valid
         while(true) {
             try {
                 System.out.print("\nPlease enter number of players (minimum 2, suggest less than 4 players): ");
@@ -108,11 +111,11 @@ public class GameUI {
         }
     }
 
+    // show the result of enhanceGame
     public void displayAdditionalResult(GameLogic game, int i) {
         System.out.println();
         System.out.println("===== Game Over! =====");
         if (game.isWon()) {
-
             System.out.printf("Congratulations, player %d, you have WON!\n", i);
             System.out.println();
         } else {
@@ -123,10 +126,12 @@ public class GameUI {
         }
     }
 
+    // Replay option
     public boolean playAgain() {
-        // Replay option
         System.out.print("Do you want to play again? (Y/N): ");
         String choice;
+
+        // check the input whether is valid
         while (true) {
             try {
                 choice = scanner.next().toUpperCase();
@@ -147,14 +152,6 @@ public class GameUI {
     }
 
 
-//    public void displayPlayersTurn(GameLogic game) {
-//
-//        System.out.println("Player " + currentPlayer++ + "'s turn");
-//        if (currentPlayer > players) {
-//            currentPlayer = 2;
-//        }
-//        System.out.println("Player " + currentPlayer++ + "'s Incorrect Guesses: " + game.getIncorrectGuesses() + "/" + game.getMaxIncorrectGuesses());
-//    }
 
 
 

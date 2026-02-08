@@ -22,27 +22,42 @@ public class WordLoader {
 
 
     // Additional wordLoadLogic
+
+    // player input words
     public String answerWords() {
         //The first player choose a word, phrase, or sentence.
         System.out.print("\nPlayer 1, enter your word / phrase / sentence: ");
         String guessItem = sc.nextLine().toUpperCase();
+
+        // clear output    ? unsuccessful
         System.out.print("\033[H\033[2J");
         System.out.flush();
 
+        // simple clear screen
+        System.out.println("\n".repeat(30));
 
-        //guessItem = guessItem.replaceAll("\\s", "");
+
+
+
+        // check input whether is valid
         for (int i = 0; i < guessItem.length(); i++) {
             if (!Character.isLetter(guessItem.charAt(0))) {
                 System.out.print("Invalid input. Player 1, enter your word / phrase / sentence: ");
                 guessItem = sc.nextLine().toUpperCase();
+
+                // clear output    ? unsuccessful
                 System.out.print("\033[H\033[2J");
                 System.out.flush();
+
+                // simple clear screen
+                System.out.println("\n".repeat(30));
 
             }
         }
         return guessItem;
     }
 
+    // generate words on the internet
     public String getRemoteRandomWord() {
         try {
 
@@ -60,9 +75,9 @@ public class WordLoader {
             String result = response.body();
             return result.replace("[", "").replace("]", "").replace("\"", "").replace(","," ").toUpperCase();
 
-        } catch (Exception e) {
+        } catch (Exception e) { // use original words when network error
             System.err.println("network connect error!");
-            return selectRandomWord(); // use original words
+            return selectRandomWord();
         }
     }
 

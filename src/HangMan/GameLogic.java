@@ -90,26 +90,13 @@ public class GameLogic {
     }
 
 
+
     //Additional logic
-
-
 
 
     public void setIncorrectGuesses(int incorrectGuesses) {
         this.incorrectGuesses = incorrectGuesses;
     }
-
-//    public boolean isPlayerLost(ArrayList<Integer> lostPlayers, int i) {
-//        for (int j = 0; j < lostPlayers.size(); j++) {
-//            if (i == lostPlayers.get(j)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
-
-
 
 
 }
