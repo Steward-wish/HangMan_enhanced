@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class WordLoader {
     private static final String[] WORDS = {
-            "HAIYAA", "JAVA", "WAHAHA", "WALLAWE", "HANGMAN"
+            "HAIYAA", "JAVA", "WAHAHA", "HELLO", "HANGMAN"
     };
     private final Random random = new Random();
     private final Scanner sc = new Scanner(System.in);
@@ -26,8 +26,24 @@ public class WordLoader {
     // player input words
     public String answerWords() {
         //The first player choose a word, phrase, or sentence.
-        System.out.print("\nPlayer 1, enter your word / phrase / sentence: ");
-        String guessItem = sc.nextLine().toUpperCase();
+        System.out.print("\nPlayer 1, enter the words (letters and space only): ");
+        String guessItem;
+
+
+        // check input whether is valid
+        while (true) {
+            guessItem = sc.nextLine().toUpperCase();
+            try {
+                if (!guessItem.matches("[a-zA-Z ]+")) {
+                    throw new IllegalArgumentException();
+                }
+                break;
+            }catch (Exception e) {
+                System.out.print("\nInvalid input. Please enter letters and space only: ");
+            }
+        }
+
+
 
         // clear output    ? unsuccessful
 //        System.out.print("\033[H\033[2J");
@@ -35,25 +51,6 @@ public class WordLoader {
 
         // simple clear screen
         System.out.println("\n".repeat(30));
-
-
-
-
-        // check input whether is valid
-        for (int i = 0; i < guessItem.length(); i++) {
-            if (!Character.isLetter(guessItem.charAt(0))) {
-                System.out.print("Invalid input. Player 1, enter your word / phrase / sentence: ");
-                guessItem = sc.nextLine().toUpperCase();
-
-                // clear output    ? unsuccessful
-//                System.out.print("\033[H\033[2J");
-//                System.out.flush();
-
-                // simple clear screen
-                System.out.println("\n".repeat(30));
-
-            }
-        }
         return guessItem;
     }
 
@@ -66,7 +63,7 @@ public class WordLoader {
 
             // 2. creat request
             HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://random-word-api.herokuapp.com/word?number="+random.nextInt(1,3))).build();
-            System.out.println("\nRandom words are being obtained from the internet......");
+            System.out.println("\nRandom words being obtained from the internet......");
 
             // 3. send request, get response
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());

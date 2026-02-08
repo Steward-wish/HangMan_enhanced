@@ -41,7 +41,6 @@ public class GameUI {
         if (game.isWon()) {
 
             System.out.println("Congratulations, you have WON!");
-            System.out.println();
         } else {
             System.out.print("Sorry, you LOST! ");
             System.out.println("The word was: " + game.getHiddenWord());
@@ -128,7 +127,7 @@ public class GameUI {
 
     // Replay option
     public boolean playAgain() {
-        System.out.print("Do you want to play again? (Y/N): ");
+        System.out.print("\nDo you want to play again? (Y/N): ");
         String choice;
 
         // check the input whether is valid

@@ -43,7 +43,8 @@ public class HangmanAdditionalMain {
                 multiPlayer.multiPlayerMode();
 
             } else { // exit
-                System.out.println("thank you");
+                System.out.println("Thank you!");
+                break;
             }
 
             // replay function
