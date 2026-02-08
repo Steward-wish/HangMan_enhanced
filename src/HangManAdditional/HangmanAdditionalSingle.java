@@ -1,8 +1,8 @@
-package HangMan;
+package HangManAdditional;
 
 // Purpose: Main entry point. Coordinates Hangman game flow.
 // Connects to: WordLoader (word source), GameLogic (rules), GameUI (interaction).
-public class HangmanBasic {
+public class HangmanAdditionalSingle {
     public void soloPlayerMode() {
         WordLoader loader = new WordLoader(); // load random word
         String wordToGuess = loader.selectRandomWord();
@@ -16,7 +16,7 @@ public class HangmanBasic {
             char guess = ui.getGuessFromUser(); // get user input
             game.guessLetter(Character.toUpperCase(guess));
 
-            ui.displayResult(game); // show final result
         }
+        ui.displayResult(game); // show final result
     }
 }

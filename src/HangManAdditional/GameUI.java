@@ -1,4 +1,4 @@
-package HangMan;
+package HangManAdditional;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -97,7 +97,7 @@ public class GameUI {
                 int players = scanner.nextInt();
                 System.out.println();
 
-                while (players < 2) {
+                while (players < 2 ) {
                     System.out.print("Invalid. Enter at least 2 players: ");
                     players = scanner.nextInt();
                     System.out.println();

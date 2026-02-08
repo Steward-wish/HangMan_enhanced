@@ -1,4 +1,4 @@
-package HangMan;
+package HangManAdditional;
 
 //import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -36,7 +36,7 @@ public class HangmanAdditionalMain {
 
             // mode option
             if (choise == 1) { // solo game
-                HangmanBasic solo = new HangmanBasic();
+                HangmanAdditionalSingle solo = new HangmanAdditionalSingle();
                 solo.soloPlayerMode();
             } else if (choise == 2) { // multiplayer game
                 HangmanAdditionalMulti multiPlayer = new HangmanAdditionalMulti();

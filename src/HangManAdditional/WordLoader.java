@@ -1,4 +1,4 @@
-package HangMan;
+package HangManAdditional;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -30,8 +30,8 @@ public class WordLoader {
         String guessItem = sc.nextLine().toUpperCase();
 
         // clear output    ? unsuccessful
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+//        System.out.print("\033[H\033[2J");
+//        System.out.flush();
 
         // simple clear screen
         System.out.println("\n".repeat(30));
@@ -46,8 +46,8 @@ public class WordLoader {
                 guessItem = sc.nextLine().toUpperCase();
 
                 // clear output    ? unsuccessful
-                System.out.print("\033[H\033[2J");
-                System.out.flush();
+//                System.out.print("\033[H\033[2J");
+//                System.out.flush();
 
                 // simple clear screen
                 System.out.println("\n".repeat(30));
